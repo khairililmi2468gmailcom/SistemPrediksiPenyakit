@@ -57,6 +57,11 @@ def home():
     # Set `prediction` ke `None` saat halaman diperbarui
     prediction = None
     return render_template('index2.html', prediction=prediction)
+@app.route('/prediksi')
+def prediksi():
+    # Set `prediction` ke `None` saat halaman diperbarui
+    prediction = None
+    return render_template('prediksi.html', prediction=prediction)
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -77,5 +82,5 @@ def predict():
         return f"An error occurred: {str(e)}"
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 
