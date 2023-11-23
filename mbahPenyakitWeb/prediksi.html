@@ -3,331 +3,293 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <title>Prediksi Penyakit</title>
+    <link rel="stylesheet" href="https://cdn.tailwindcss.com">
+    <style>
+        /* Tambahkan gaya CSS sesuai kebutuhan Anda */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            overflow-x: hidden; /* Mengatasi scroll horizontal */
+        }
+
+        .navbar {
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            text-decoration: none;
+            color: #333;
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .navbar a:hover {
+            background-color: #ddd;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 2rem auto;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden; /* Mengatasi overflow */
+        }
+
+        .question-container {
+            display: none;
+            text-align: center;
+        }
+
+        .question-container.active {
+            display: block;
+        }
+
+        .btn-container {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .btn {
+            background-color: #3498db;
+            color: #fff;
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 0.25rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+    </style>
 </head>
 <body>
-<h2 class="home-text13" id="prediksi">
-    <span>Prediksi</span>
-    <br />
-    <span>Panyakit</span>
-  </h2>
 
-  <form
-  method="POST"
-  action="/predict"
-  onsubmit="return validateForm()"
-  class="mx-auto "
->
-  <label class="my-3 mx-4" class="my-3" for="feature1">Gatal-gatal?</label>
-  <select name="feature1" id="feature1">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" class="my-3" for="feature2">Ruam kulit?</label>
-  <select name="feature2" id="feature2">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" class="my-3"  for="feature3">Nodal skin erupsi?</label>
-  <select name="feature3" id="feature3">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature4">Bersin terus menerus?</label>
-  <select name="feature4" id="feature4">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature5">Tubuh gemetaran?</label>
-  <select name="feature5" id="feature5">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature6">Tubuh panas dingin?</label>
-  <select name="feature6" id="feature6">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature7">Nyeri sendi?</label>
-  <select name="feature7" id="feature7">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature8">Sakit perut?</label>
-  <select name="feature8" id="feature8">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature9">Lidah Keasaman?</label>
-  <select name="feature9" id="feature9">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature10">Sariawan?</label>
-  <select name="feature10" id="feature10">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature11">Pengecilan otot?</label>
-  <select name="feature11" id="feature11">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature12">Muntah?</label>
-  <select name="feature12" id="feature12">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature13">Pembakaran kemih ?</label>
-  <select name="feature13" id="feature13">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature14">Bercak pada saat buang air kecil?</label>
-  <select name="feature14" id="feature14">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature15">Kelelahan?</label>
-  <select name="feature15" id="feature15">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature16">Penambahan berat badan?</label>
-  <select name="feature16" id="feature16">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature17">Kecemasan?</label>
-  <select name="feature17" id="feature17">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature18">Tangan dan kaki dingin?</label>
-  <select name="feature18" id="feature18">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature19">Suasana hati badmood?</label>
-  <select name="feature19" id="feature19">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature20">Penurunan berat badan?</label>
-  <select name="feature20" id="feature20">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature21">Gelisah?</label>
-  <select name="feature21" id="feature21">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature22">Lesu?</label>
-  <select name="feature22" id="feature22">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature23">Bercak di tenggorokan?</label>
-  <select name="feature23" id="feature23">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature24">Kadar gula tidak teratur?</label>
-  <select name="feature24" id="feature24">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature25">Batuk?</label>
-  <select name="feature25" id="feature25">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature26">Demam tinggi?</label>
-  <select name="feature26" id="feature26">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature27">Mata Cekung?</label>
-  <select name="feature27" id="feature27">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature28">Sesak napas?</label>
-  <select name="feature28" id="feature28">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature29">Berkeringat?</label>
-  <select name="feature29" id="feature29">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature30">Dehidrasi?</label>
-  <select name="feature30" id="feature30">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature31">Gangguan pencernaan?</label>
-  <select name="feature31" id="feature31">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature32">Sakit Kepala?</label>
-  <select name="feature32" id="feature32">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature33">Kulit kekuningan?</label>
-  <select name="feature33" id="feature33">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature34">Urine berwarna gelap?</label>
-  <select name="feature34" id="feature34">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature35">Mual?</label>
-  <select name="feature35" id="feature35">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature36">Kehilangan Nafsu Makan?</label>
-  <select name="feature36" id="feature36">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature37">Sakit di Belakang Mata?</label>
-  <select name="feature37" id="feature37">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature38">Sakit Punggung?</label>
-  <select name="feature38" id="feature38">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature39">Sembelit?</label>
-  <select name="feature39" id="feature39">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature40">Sakit Perut?</label>
-  <select name="feature40" id="feature40">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature41">Diare?</label>
-  <select name="feature41" id="feature41">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature42">Demam Ringan?</label>
-  <select name="feature42" id="feature42">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature43">Urin Kuning?</label>
-  <select name="feature43" id="feature43">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature44">Mata Menguning?</label>
-  <select name="feature44" id="feature44">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature45">Gagal Hati Akut?</label>
-  <select name="feature45" id="feature45">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature46">Kelebihan Cairan?</label>
-  <select name="feature46" id="feature46">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature47"> Pembengkakan Perut?</label>
-  <select name="feature47" id="feature47">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <label class="my-3 mx-4" for="feature48">Pembengkakan Kelenjar getah bening?</label>
-  <select name="feature48" id="feature48">
-    <option value="#"></option>
-    <option value="1">Ya</option>
-    <option value="0">Tidak</option></select
-  ><br />
-  <input
-    type="submit"
-    value="Prediksi"
-    class="btn btn-primary"
-  />
-</form>
+<nav class="navbar">
+    <a href="#" class="logo">
+        <img src="{{ url_for('static', filename='public/diesease-300h.png') }}" alt="Flowbite Logo" />
+        <span class="logo-text">MbahPenyakit</span>
+    </a>
+    <div class="nav-links">
+        <a href="/">Home</a>
+        <a href="/prediksi">Prediksi</a>
+        <a href="#">Kontak</a>
+        <a href="#">Tentang</a>
+    </div>
+</nav>
 
-{% if prediction is not none %}
-<p>Penyakit yang anda alami: {{ prediction }}</p>
-{% endif %}
-<script>
-  function validateForm() {
-    var inputElements = document.getElementsByTagName("select");
-    for (var i = 0; i < inputElements.length; i++) {
-      if (inputElements[i].value === "#") {
-        alert("Lengkapi Form nya.");
-        return false; // Mencegah pengiriman formulir jika karakter "#" ditemukan
-      }
+<div class="container">
+    <div id="questions-container">
+        <!-- Question pages will be dynamically added here -->
+    </div>
+
+    <div class="btn-container">
+        <button onclick="prevQuestion()" class="btn" id="prevBtn" disabled>Kembali</button>
+        <button onclick="nextQuestion()" class="btn" id="nextBtn">Selanjutnya</button>
+        <button onclick="submitForm()" class="btn" id="submitBtn" style="display: none;">Prediksi</button>
+    </div>
+    
+    <div id="prediction-container" style="display: none;">
+        <h3>Penyakit yang Anda alami:</h3>
+        <p id="predictionResult"></p>
+    </div>
+    <!-- {% if prediction is not none %}
+        <p>Penyakit yang Anda alami: {{ prediction }}</p>
+    {% endif %} -->
+
+    <script>
+        var questions = [
+  "Apakah Anda mengalami gatal-gatal?",
+  "Apakah Anda memiliki ruam kulit?",
+  "Apakah Anda mengalami nodal skin erupsi?",
+  "Apakah Anda bersin terus menerus?",
+  "Apakah tubuh Anda gemetaran?",
+  "Apakah tubuh Anda merasa panas dingin?",
+  "Apakah Anda mengalami nyeri sendi?",
+  "Apakah Anda merasakan sakit perut?",
+  "Apakah Anda mengalami lidah keasaman?",
+  "Apakah Anda memiliki sariawan?",
+  "Apakah Anda mengalami pengecilan otot?",
+  "Apakah Anda muntah?",
+  "Apakah Anda mengalami pembakaran saat buang air kecil?",
+  "Apakah Anda melihat bercak pada saat buang air kecil?",
+  "Apakah Anda merasa kelelahan?",
+  "Apakah Anda mengalami penambahan berat badan?",
+  "Apakah Anda merasa cemas?",
+  "Apakah tangan dan kaki Anda terasa dingin?",
+  "Apakah Anda mengalami suasana hati buruk?",
+  "Apakah Anda mengalami penurunan berat badan?",
+  "Apakah Anda merasa gelisah?",
+  "Apakah Anda merasa lesu?",
+  "Apakah Anda melihat bercak di tenggorokan?",
+  "Apakah kadar gula Anda tidak teratur?",
+  "Apakah Anda batuk?",
+  "Apakah Anda mengalami demam tinggi?",
+  "Apakah mata Anda cekung?",
+  "Apakah Anda mengalami sesak napas?",
+  "Apakah Anda berkeringat?",
+  "Apakah Anda mengalami dehidrasi?",
+  "Apakah Anda mengalami gangguan pencernaan?",
+  "Apakah Anda mengalami sakit kepala?",
+  "Apakah kulit Anda kekuningan?",
+  "Apakah urine Anda berwarna gelap?",
+  "Apakah Anda merasa mual?",
+  "Apakah Anda kehilangan nafsu makan?",
+  "Apakah Anda merasakan sakit di belakang mata?",
+  "Apakah Anda merasakan sakit punggung?",
+  "Apakah Anda mengalami sembelit?",
+  "Apakah Anda merasakan sakit perut?",
+  "Apakah Anda mengalami diare?",
+  "Apakah Anda mengalami demam ringan?",
+  "Apakah urine Anda berwarna kuning?",
+  "Apakah mata Anda menguning?",
+  "Apakah Anda mengalami gagal hati akut?",
+  "Apakah Anda mengalami kelebihan cairan?",
+  "Apakah Anda mengalami pembengkakan perut?",
+  "Apakah Anda mengalami pembengkakan kelenjar getah bening?"
+];
+
+
+        var currentIndex = 0; // Indeks pertanyaan saat ini
+
+        // Fungsi untuk membuat formulir berdasarkan array pertanyaan
+        function createForm() {
+            var questionsContainer = document.getElementById('questions-container');
+
+            questions.forEach(function (question, index) {
+                var questionDiv = document.createElement('div');
+                questionDiv.className = 'question-container';
+
+                var questionLabel = document.createElement('h3');
+                questionLabel.textContent = question;
+
+                var radioButtonsContainer = document.createElement('div');
+                radioButtonsContainer.className = 'radio-buttons-container';
+
+                var radioYes = createRadioButton(index, '1', 'Ya');
+                var radioNo = createRadioButton(index, '0', 'Tidak');
+
+                radioButtonsContainer.appendChild(radioYes);
+                radioButtonsContainer.appendChild(radioNo);
+
+                questionDiv.appendChild(questionLabel);
+                questionDiv.appendChild(radioButtonsContainer);
+
+                questionsContainer.appendChild(questionDiv);
+            });
+
+            showQuestion(currentIndex);
+        }
+
+        // Fungsi untuk membuat elemen tombol radio
+        function createRadioButton(index, value, label) {
+            var radio = document.createElement('input');
+            radio.type = 'radio';
+            radio.name = 'feature' + (index + 1);
+            radio.value = value;
+
+            var labelElement = document.createElement('label');
+            labelElement.textContent = label;
+            labelElement.className = 'radio-button';
+            labelElement.onclick = function() {
+                nextQuestion();
+            };
+
+            labelElement.appendChild(radio);
+
+            return labelElement;
+        }
+
+        // Fungsi untuk menampilkan pertanyaan berdasarkan indeks saat ini
+        function showQuestion(index) {
+            var questionContainers = document.querySelectorAll('.question-container');
+            questionContainers.forEach(function (container, i) {
+                if (i === index) {
+                    container.classList.add('active');
+                } else {
+                    container.classList.remove('active');
+                }
+            });
+
+            // Mengatur keadaan tombol Kembali dan Selanjutnya
+            document.getElementById('prevBtn').disabled = index === 0;
+            document.getElementById('nextBtn').disabled = index === questions.length - 1;
+
+            // Menampilkan atau menyembunyikan tombol "Prediksi" di akhir
+            document.getElementById('submitBtn').style.display = index === questions.length - 1 ? 'block' : 'none';
+        }
+
+        // Fungsi untuk menampilkan pertanyaan berikutnya
+        function nextQuestion() {
+            if (currentIndex < questions.length - 1) {
+                currentIndex++;
+                showQuestion(currentIndex);
+            }
+        }
+
+        // Fungsi untuk menampilkan pertanyaan sebelumnya
+        function prevQuestion() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                showQuestion(currentIndex);
+            }
+        }
+
+        
+        function submitForm() {
+    var selectedAnswers = document.querySelectorAll('input[type="radio"]:checked');
+    var predictionResult = document.getElementById('predictionResult');
+
+    if (selectedAnswers.length === questions.length) {
+        var answers = Array.from(selectedAnswers).map(function (answer) {
+            return answer.value === '1' ? 'Ya' : 'Tidak';
+        });
+
+        // Kirim data jawaban ke server Flask untuk prediksi
+        fetch('/predict', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ features: answers }),  // Mengubah kunci dari 'answers' menjadi 'features'
+        })
+            .then(response => response.json())
+            .then(data => {
+                if (data.error) {
+                    console.error('Error:', data.error);
+                } else {
+                    // Tampilkan hasil prediksi
+                    predictionResult.textContent = "Penyakit yang Anda alami: " + data.prediction;
+                    document.getElementById('prediction-container').style.display = 'block';
+                    document.getElementById('submitBtn').style.display = 'none';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    } else {
+        alert('Silakan jawab semua pertanyaan sebelum melihat jawaban.');
     }
-    return true; // Lanjutkan pengiriman formulir jika semuanya valid
-  }
-</script>
+}
+
+
+        // Panggil fungsi untuk membuat formulir saat halaman dimuat
+        window.onload = function () {
+            createForm();
+        };
+    </script>
+</div>
 </body>
 </html>

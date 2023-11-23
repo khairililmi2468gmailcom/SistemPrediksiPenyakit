@@ -125,213 +125,45 @@
         }
       }
     </style>
+     <script src="https://cdn.tailwindcss.com"></script>
   </head>
   <body>
     <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
     <div>
         <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
 
-      <div class="home-container">
-        <div data-modal="practices" class="home-modal">
-          <div class="home-practices">
-            <div class="home-heading">
-              <span class="home-header">Our practices</span>
-              <svg
-                viewBox="0 0 1024 1024"
-                data-close="practices"
-                class="home-close"
-              >
-                <path
-                  d="M225.835 286.165l225.835 225.835-225.835 225.835c-16.683 16.683-16.683 43.691 0 60.331s43.691 16.683 60.331 0l225.835-225.835 225.835 225.835c16.683 16.683 43.691 16.683 60.331 0s16.683-43.691 0-60.331l-225.835-225.835 225.835-225.835c16.683-16.683 16.683-43.691 0-60.331s-43.691-16.683-60.331 0l-225.835 225.835-225.835-225.835c-16.683-16.683-43.691-16.683-60.331 0s-16.683 43.691 0 60.331z"
-                ></path>
-              </svg>
-            </div>
-            <div class="home-grid">
-              <div class="home-section">
-                <div class="home-heading01">
-                  <span class="home-header01">Cardiology</span>
-                  <span class="home-caption">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt.
-                  </span>
-                </div>
-                <div class="read-more">
-                  <span class="home-text">Read more</span>
-                  <img
-                    alt="image"
-                    src="{{ url_for('static', filename='public/Icons/arrow-2.svg') }}
-                    class="home-image"
-                  />
-                </div>
-              </div>
-              <div class="home-section1">
-                <div class="home-heading02">
-                  <span class="home-header02">Orthopedics</span>
-                  <span class="home-caption1">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt.
-                  </span>
-                </div>
-                <div class="read-more">
-                  <span class="home-text01">Read more</span>
-                  <img
-                    alt="image"
-                    src="{{ url_for('static', filename='public/Icons/arrow-2.svg') }}"
-                    class="home-image01"
-                  />
-                </div>
-              </div>
-              <div class="home-section2">
-                <div class="home-heading03">
-                  <span class="home-header03">Ophtalmology</span>
-                  <span class="home-caption2">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt.
-                  </span>
-                </div>
-                <div class="read-more">
-                  <span class="home-text02">Read more</span>
-                  <img
-                    alt="image"
-                    src="{{ url_for('static', filename='public/Icons/arrow-2.svg') }}"
-                    class="home-image02"
-                  />
-                </div>
-              </div>
-              <div class="home-section3">
-                <div class="home-heading04">
-                  <span class="home-header04">Pediatrics</span>
-                  <span class="home-caption3">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt.
-                  </span>
-                </div>
-                <div class="read-more">
-                  <span class="home-text03">Read more</span>
-                  <img
-                    alt="image"
-                    src="{{ url_for('static', filename='public/Icons/arrow-2.svg') }}"
-                    class="home-image03"
-                  />
-                </div>
-              </div>
-              <div class="home-section4">
-                <div class="home-heading05">
-                  <span class="home-header05">Nutrition</span>
-                  <span class="home-caption4">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt.
-                  </span>
-                </div>
-                <div class="read-more">
-                  <span class="home-text04">Read more</span>
-                  <img
-                    alt="image"
-                    src="{{ url_for('static', filename='public/Icons/arrow-2.svg') }}"
-                    class="home-image04"
-                  />
-                </div>
-              </div>
-              <div class="home-section5">
-                <div class="home-heading06">
-                  <span class="home-header06">General</span>
-                  <span class="home-caption5">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                    do eiusmod tempor incididunt.
-                  </span>
-                </div>
-                <div class="read-more">
-                  <span class="home-text05">Read more</span>
-                  <img
-                    alt="image"
-                    src="{{ url_for('static', filename='public/Icons/arrow-2.svg') }}"
-                    class="home-image05"
-                  />
-                </div>
-              </div>
+
+        <nav class="bg-white border-gray-200 dark:bg-gray-900">
+          <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
+                <img src="{{ url_for('static', filename='public/diesease-300h.png') }}" class="h-20" alt="Flowbite Logo" />
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">MbahPenyakit</span>
+            </a>
+            <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
+                <span class="sr-only">Open main menu</span>
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+                </svg>
+            </button>
+            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
+              <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+                <li>
+                  <a href="#" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
+                </li>
+                <li>
+                  <a href="/prediksi" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Prediksi</a>
+                </li>
+                <li>
+                  <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Kontak</a>
+                </li>
+                <li>
+                  <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Tentang</a>
+                </li>
+              </ul>
             </div>
           </div>
-        </div>
-        <section class="home-hero">
-          <header data-thq="thq-navbar" class="home-navbar">
-            <div class="home-left">
-              <svg viewBox="0 0 1024 1024" class="home-icon1">
-                <path
-                  d="M512 128l342 256v512h-214v-298h-256v298h-214v-512z"
-                ></path>
-              </svg>
-              <nav class="home-links">
-                <a href="#homeBro" class="home-link">Home</a>
-                <a href="/prediksi" class="home-link01">
-                  Prediksi Penyakit
-                </a>
-                <a href="#kontak" class="home-link03">Kontak</a>
-                <a href="#tentang" class="home-link02">Tentang Kami</a>
-              </nav>
-            </div>
-            <div data-thq="thq-navbar-btn-group" class="home-right">
-              <button class="home-phone button">
-                <svg viewBox="0 0 1024 1024" class="home-icon3">
-                  <path
-                    d="M854 662q18 0 30 12t12 30v150q0 18-12 30t-30 12q-300 0-513-213t-213-513q0-18 12-30t30-12h150q18 0 30 12t12 30v2q0 82 24 150 4 8 4 14 0 20-14 30l-94 94q40 76 123 159t159 123l94-94q14-14 30-14 6 0 14 4 72 24 152 24zM768 470v-128h-170v-172h170v-128l214 214z"
-                  ></path>
-                </svg>
-                <span class="home-text06">082283658598</span>
-              </button>
-              <img
-                src="{{ url_for('static', filename='public/diesease-300h.png') }}"
-                alt="image"
-                class="home-image06"
-              />
-            </div>
-            <div data-thq="thq-burger-menu" class="home-burger-menu">
-              <svg viewBox="0 0 1024 1024" class="home-icon5">
-                <path
-                  d="M128 554.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 298.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667zM128 810.667h768c23.552 0 42.667-19.115 42.667-42.667s-19.115-42.667-42.667-42.667h-768c-23.552 0-42.667 19.115-42.667 42.667s19.115 42.667 42.667 42.667z"
-                ></path>
-              </svg>
-            </div>
-            <div data-thq="thq-mobile-menu" class="home-mobile-menu">
-              <div
-                data-thq="thq-mobile-menu-nav"
-                data-role="Nav"
-                class="home-nav"
-              >
-                <div class="home-container1">
-                  <img
-                    alt="image"
-                    src="{{ url_for('static', filename='public/Branding/logo-1500h.png') }}"
-                    class="home-image07"
-                  />
-                  <div data-thq="thq-close-menu" class="home-menu-close">
-                    <svg viewBox="0 0 1024 1024" class="home-icon7">
-                      <path
-                        d="M810 274l-238 238 238 238-60 60-238-238-238 238-60-60 238-238-238-238 60-60 238 238 238-238z"
-                      ></path>
-                    </svg>
-                  </div>
-                </div>
-                <nav
-                  data-thq="thq-mobile-menu-nav-links"
-                  data-role="Nav"
-                  class="home-nav1"
-                >
-                  <span class="home-text07">Features</span>
-                  <span class="home-text08">How it works</span>
-                  <span class="home-text09">Prices</span>
-                  <span class="home-text10">Contact</span>
-                  <a href="#book" class="home-book button button-main">
-                    <img
-                      alt="image"
-                      src="{{ url_for('static', filename='public/Icons/calendar.svg') }}"
-                      class="home-image08"
-                    />
-                    <span class="home-text11">Book an appointment</span>
-                  </a>
-                </nav>
-              </div>
-            </div>
-          </header>
+        </nav>
+        
           <div class="home-main" id="homeBro">
             <div class="home-content">
               <div class="home-heading07">
@@ -414,7 +246,6 @@
               </div>
             </div>
           </div>
-          <div class="home-background"></div>
         </section>
 
         <section class="home-practices1"  style="padding-top: 25rem">

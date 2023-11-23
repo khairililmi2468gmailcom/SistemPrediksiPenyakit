@@ -77,9 +77,9 @@ def predict():
         prediction = loaded_model.predict([features])[0]
         predicted_penyakit = penyakit_mapping[prediction]
 
-        return render_template('index2.html', prediction=predicted_penyakit)
+        return jsonify({'prediction': predicted_penyakit, 'error': None})
     except Exception as e:
-        return f"An error occurred: {str(e)}"
+        return jsonify({'prediction': None, 'error': str(e)})
 
 if __name__ == '__main__':
     app.run(debug=True)
