@@ -68,10 +68,12 @@ def predict():
     try:
         # Dapatkan data yang diinputkan oleh pengguna
         features = []
-        for i in range(1, 49):
-            feature_name = f'feature{i}'
-            feature_value = float(request.form[feature_name])
-            features.append(feature_value)
+        features = request.get_json().get('features', [])
+        print("Received features:", features)
+        # for i in range(1, 49):
+        #     feature_name = f'feature{i}'
+        #     feature_value = float(request.json[feature_name])
+        #     features.append(feature_value)
 
         # Lakukan prediksi dengan model Anda
         prediction = loaded_model.predict([features])[0]

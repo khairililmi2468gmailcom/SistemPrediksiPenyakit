@@ -1,516 +1,562 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Medica template</title>
-    <meta property="og:title" content="Medica template" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta charset="utf-8" />
-    <meta property="twitter:card" content="summary_large_image" />
 
-    <style data-tag="reset-style-sheet">
-      html {
-        line-height: 1.15;
-      }
-      body {
-        margin: 0;
-      }
-      * {
-        box-sizing: border-box;
-        border-width: 0;
-        border-style: solid;
-      }
-      p,
-      li,
-      ul,
-      pre,
-      div,
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6,
-      figure,
-      blockquote,
-      figcaption {
-        margin: 0;
-        padding: 0;
-      }
-      button {
-        background-color: transparent;
-      }
-      button,
-      input,
-      optgroup,
-      select,
-      textarea {
-        font-family: inherit;
-        font-size: 100%;
-        line-height: 1.15;
-        margin: 0;
-      }
-      button,
-      select {
-        text-transform: none;
-      }
-      button,
-      [type="button"],
-      [type="reset"],
-      [type="submit"] {
-        -webkit-appearance: button;
-      }
-      button::-moz-focus-inner,
-      [type="button"]::-moz-focus-inner,
-      [type="reset"]::-moz-focus-inner,
-      [type="submit"]::-moz-focus-inner {
-        border-style: none;
-        padding: 0;
-      }
-      button:-moz-focus,
-      [type="button"]:-moz-focus,
-      [type="reset"]:-moz-focus,
-      [type="submit"]:-moz-focus {
-        outline: 1px dotted ButtonText;
-      }
-      a {
-        color: inherit;
-        text-decoration: inherit;
-      }
-      input {
-        padding: 2px 4px;
-      }
-      img {
-        display: block;
-      }
-      html {
-        scroll-behavior: smooth;
-      }
-    </style>
-    <style data-tag="default-style-sheet">
-      html {
-        font-family: Poppins;
-        font-size: 16px;
+<head>
+  <title>Diagnosis Pintar</title>
+  <meta property="og:title" content="Medica template" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta property="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/x-icon" href="{{url_for('static', filename='public/dis2.png')}}">
+  <style data-tag="reset-style-sheet">
+    html {
+      line-height: 1.15;
+    }
+
+    body {
+      margin: 0;
+    }
+
+    * {
+      box-sizing: border-box;
+      border-width: 0;
+      border-style: solid;
+    }
+
+    p,
+    li,
+    ul,
+    pre,
+    div,
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6,
+    figure,
+    blockquote,
+    figcaption {
+      margin: 0;
+      padding: 0;
+    }
+
+    button {
+      background-color: transparent;
+    }
+
+    button,
+    input,
+    optgroup,
+    select,
+    textarea {
+      font-family: inherit;
+      font-size: 100%;
+      line-height: 1.15;
+      margin: 0;
+    }
+
+    button,
+    select {
+      text-transform: none;
+    }
+
+    button,
+    [type="button"],
+    [type="reset"],
+    [type="submit"] {
+      -webkit-appearance: button;
+    }
+
+    button::-moz-focus-inner,
+    [type="button"]::-moz-focus-inner,
+    [type="reset"]::-moz-focus-inner,
+    [type="submit"]::-moz-focus-inner {
+      border-style: none;
+      padding: 0;
+    }
+
+    button:-moz-focus,
+    [type="button"]:-moz-focus,
+    [type="reset"]:-moz-focus,
+    [type="submit"]:-moz-focus {
+      outline: 1px dotted ButtonText;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: inherit;
+      z-index: 1;
+    }
+
+    input {
+      padding: 2px 4px;
+    }
+
+    img {
+      display: block;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+  </style>
+  <style data-tag="default-style-sheet">
+    html {
+      font-family: Poppins;
+      font-size: 16px;
+    }
+
+    body {
+      font-weight: 400;
+      font-style: normal;
+      text-decoration: none;
+      text-transform: none;
+      letter-spacing: normal;
+      line-height: 1.15;
+      color: var(--dl-color-gray-black);
+      background-color: var(--dl-color-gray-white);
+    }
+  </style>
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+    data-tag="font" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+    data-tag="font" />
+  <style>
+    #navbar {
+      background-color: transparent;
+      padding: 1rem;
+      color: #fff;
+
+      z-index: 2;
+    }
+
+    #bar {
+      z-index: 3;
+    }
+
+    #bar2 {
+      z-index: 3;
+    }
+
+    @keyframes fade-in-left {
+      0% {
+        opacity: 0;
+        transform: translateX(-20px);
       }
 
-      body {
-        font-weight: 400;
-        font-style: normal;
-        text-decoration: none;
-        text-transform: none;
-        letter-spacing: normal;
-        line-height: 1.15;
-        color: var(--dl-color-gray-black);
-        background-color: var(--dl-color-gray-white);
+      100% {
+        opacity: 1;
+        transform: translateX(0);
       }
-    </style>
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
-      data-tag="font"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
-      data-tag="font"
-    />
-    <style>
-      @keyframes fade-in-left {
-        0% {
-          opacity: 0;
-          transform: translateX(-20px);
-        }
-        100% {
-          opacity: 1;
-          transform: translateX(0);
-        }
+    }
+
+    @media (min-width: 768px) {
+      #navbar-default {
+        display: none;
+        z-index: 3;
       }
-    </style>
-     <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body>
-    <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
-    <div>
-        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+      .video1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 20%;
+        width: 50%;
+        object-fit: cover;
+        opacity: 0.90;
+        z-index: -4;
+      }
+
+    }
+
+    .video1 {
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 100%;
+      width: 100%;
+      object-fit: cover;
+      opacity: 0.90;
+      z-index: -4;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      mix-blend-mode: overlay;
+    }
+
+    .home-header07 {
+      color: #fff;
+    }
+
+    .home-caption6 {
+      color: #fff;
+    }
+
+    .home-book1 {
+      background-color: #e6eee9;
+      z-index: 3;
+    }
+
+    /* Untuk ukuran layar kecil, seperti ponsel */
+    @media only screen and (max-width: 767px) {
+
+      .video1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        height: 25%;
+        width: 50%;
+        object-fit: cover;
+        opacity: 0.90;
+        z-index: -4;
+      }
+
+      #homeBro {
+        height: 18rem;
+      }
+
+      .home-heading07 {
+        padding-top: 1rem;
+      }
+
+      .home-heading07 p {
+        font-size: 12px;
+        padding-left: -2rem;
+      }
+
+      .home-heading07 h1 {
+        font-size: 30px;
+      }
+
+      .button {
+        width: 120px;
+        height: 40px;
+        font-size: 10px;
+        margin-bottom: 3rem;
+      }
+
+      #fotoLanding,
+      .home-image11 {
+        top: 100%;
+        position: absolute;
+        width: 50%;
+        height: auto;
+
+      }
 
 
-        <nav class="bg-white border-gray-200 dark:bg-gray-900">
-          <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a href="#" class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="{{ url_for('static', filename='public/diesease-300h.png') }}" class="h-20" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">MbahPenyakit</span>
+
+    }
+
+    /* Untuk ukuran layar menengah, seperti tablet */
+    @media only screen and (min-width: 500px) and (max-width: 991px) {
+
+      #fotoLanding,
+      .home-image11 {
+        top: 0;
+        position: relative;
+        width: 60%;
+        height: auto;
+      }
+
+      .video1 {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 75%;
+        width: 100%;
+        object-fit: cover;
+        opacity: 0.90;
+        z-index: -4;
+
+      }
+
+      #fotoLanding,
+      .home-image11.down {
+        top: 0rem;
+      }
+
+      #fotoLanding,
+      .home-image11.up {
+        top: -10rem;
+      }
+
+    }
+
+    .home-content01 {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+    }
+
+    .features-section {
+      flex-basis: calc(20% - 2rem);
+      /* Lebar tetap 20%, dikurangi margin yang akan ditambahkan */
+      box-sizing: border-box;
+      margin-bottom: 1rem;
+    }
+
+    .features-icon {
+      width: 5rem;
+      /* Gambar mengambil 100% lebar dari container */
+      height: auto;
+      display: block;
+      margin-bottom: 10px;
+      border: none;
+    }
+
+    /* Tambahkan margin kanan pada setiap elemen kecuali yang terakhir di setiap baris */
+    .features-section:not(:nth-child(5n)) {
+      margin-right: 2rem;
+    }
+
+
+    /* O */
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/tailwindcss@^2.0.0/dist/tailwind.min.js"></script>
+
+</head>
+
+<body>
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
+  <div>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+
+    <nav class="bg-white dark:bg-gray-900" id="navbar">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex items-center justify-between h-16">
+          <div class="flex items-center">
+            <a href="#" class="flex-shrink-0 flex items-center">
+              <img class="h-20 w-20" src="{{url_for('static', filename='public/dis.png')}}" alt="Mbah Penyakit Logo" />
+              <span class="ml-2 font-medium text-white-900">Diagnosis Pintar</span>
             </a>
-            <button data-collapse-toggle="navbar-default" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-default" aria-expanded="false">
-                <span class="sr-only">Open main menu</span>
-                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
-                </svg>
-            </button>
-            <div class="hidden w-full md:block md:w-auto" id="navbar-default">
-              <ul class="font-medium flex flex-col p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:flex-row md:space-x-8 rtl:space-x-reverse md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-                <li>
-                  <a href="#" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</a>
-                </li>
-                <li>
-                  <a href="/prediksi" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Prediksi</a>
-                </li>
-                <li>
-                  <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Kontak</a>
-                </li>
-                <li>
-                  <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Tentang</a>
-                </li>
-              </ul>
-            </div>
           </div>
-        </nav>
-        
-          <div class="home-main" id="homeBro">
-            <div class="home-content">
-              <div class="home-heading07">
-                <h1 class="home-header07">
-                  Sistem Pakar Kesehatan yang peduli kesehatan Anda
-                </h1>
-                <p class="home-caption6">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt.
-                </p>
-              </div>
-              <button class="home-book1 button button-main">
-                <img
-                  alt="image"
-                  src="{{ url_for('static', filename='public/Icons/calendarsvg') }}"
-                  class="home-image09"
-                />
-                <span>Ayo Berobat</span>
-              </button>
-            </div>
-            <div class="home-image10">
-              <img
-                alt="image"
-                src="{{ url_for('static', filename='public/doctor-image-1500w.png') }}"
-                class="home-image11"
-              />
-            </div>
-          </div>
-          <div id="features" class="home-features">
-            <div class="home-content01">
-              <div class="features-section quick-links">
-                <div class="features-heading">
-                  <h3 class="features-header">
-                    <span>Virtual Assistant</span>
-                  </h3>
-                  <img
-                    alt="image"
-                    src="{{ url_for('static', filename='public/Icons/arrow.svg') }}"
-                    class="features-icon"
-                  />
-                </div>
-                <p class="features-text">
-                  <span>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </span>
-                </p>
-                <div class="features-divider"></div>
-              </div>
-              <div class="features-section quick-links">
-                <div class="features-heading">
-                  <h3 class="features-header"><span>Virtual Clinic</span></h3>
-                  <img
-                    alt="image"
-                    src="{{ url_for('static', filename='public/Icons/arrow.svg') }}"
-                    class="features-icon"
-                  />
-                </div>
-                <p class="features-text">
-                  <span>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </span>
-                </p>
-                <div class="features-divider"></div>
-              </div>
-              <div class="features-section quick-links">
-                <div class="features-heading">
-                  <h3 class="features-header"><span>Clinical results</span></h3>
-                  <img
-                    alt="image"
-                    src="{{ url_for('static', filename='public/Icons/arrow.svg') }}"
-                    class="features-icon"
-                  />
-                </div>
-                <p class="features-text">
-                  <span>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                  </span>
-                </p>
-                <div class="features-divider"></div>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        <section class="home-practices1"  style="padding-top: 25rem">
-          <div class="home-heading08">
-            <style>
-              /* CSS untuk menambahkan gaya dan warna */
-              body {
-                background-color: lightblue;
-              }
-          
-      
-              form {
-                margin: 0 auto;
-                width: 50%;
-              }
-          
-              p {
-                font-size: 20px;
-              }
-          
-              input {
-                margin: 10px;
-                width: 100px;
-                height: 50px;
-                font-size: 20px;
-              }
-            </style>
-         
-          </div>
-        </section>
-        <section id="how-it-works" class="home-why">
-          <div class="home-heading09">
-            <h2 class="home-header08">Why choose us</h2>
-            <p class="home-header09">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt.
-            </p>
-          </div>
-          <div class="home-content03">
-            <div class="home-video">
-              <video
-                src=""
-                poster="{{ url_for('static', filename='public/video-1500w.png') }}"
-                class="home-video1"
-              ></video>
-              <div class="home-play">
-                <img
-                  alt="image"
-                  src="{{ url_for('static', filename='public/Icons/play.svg') }}"
-                  class="home-image12"
-                />
-              </div>
+          <div class="hidden lg:block">
+            <div class="flex items-center">
+              <a href="/"
+                class="ml-4 py-2 rounded-lg px-4 font-medium text-white-700 hover:bg-gray-100 hover:text-gray-900">Home</a>
+              <a href="/prediksi"
+                class="ml-4 py-2 rounded-lg px-4 font-medium text-white-700 hover:bg-gray-100 hover:text-gray-900">Prediksi</a>
+              <a href="#tentang"
+                class="ml-4 py-2 rounded-lg px-4 font-medium text-white-700 hover:bg-gray-100 hover:text-gray-900">Tentang</a>
             </div>
-            <div class="home-caption7">
-              <h3 class="home-header10">
-                Consectetur adipiscing elit, sed do eiusmod tempor
-              </h3>
-              <p class="home-header11">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt.
+          </div>
+
+          <div class="-mr-2 lg:hidden" id="bar">
+            <button type="button" id="bar2"
+              class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:bg-gray-700 hover:text-white"
+              onclick="document.getElementById('navbar-default').classList.toggle('hidden'); document.getElementById('navbar-default').scrollIntoView({ behavior: 'smooth' });">
+              <span class="sr-only">Open main menu</span>
+              <svg class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="hidden lg:block" id="navbar-default">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div class="flex flex-col pt-4 pb-16">
+            <a href="/" class="block py-2 px-3 text-white-700 rounded-md hover:bg-gray-100">Home</a>
+            <a href="/prediksi" class="block py-2 px-3 text-white-700 rounded-md hover:bg-gray-100">Prediksi</a>
+            <a href="#tentang" class="block py-2 px-3 text-white-700 rounded-md hover:bg-gray-100">Tentang</a>
+          </div>
+        </div>
+      </div>
+
+    </nav>
+    <script>
+      const navbar = document.getElementById('navbar-default');
+
+      navbar.classList.add('hidden');
+
+      navbar.addEventListener('click', function () {
+        navbar.classList.toggle('hidden');
+        navbar.scrollIntoView({ behavior: 'smooth' });
+      });
+    </script>
+
+    <div class="home-main" id="homeBro">
+      <div class="home-content">
+        <div class="home-heading07">
+          <video class="video1" src="{{url_for('static', filename='public/VideoDiagnosis.mp4')}}" muted loop
+            autoplay></video>
+          <div class="overlay"></div>
+          <h1 class="home-header07">
+            Sistem Pakar Kesehatan yang peduli kesehatan Anda
+          </h1>
+          <p class="home-caption6">
+            Dapatkan hasil diagnosis yang akurat dan cepat dengan bantuan teknologi machine learning.
+          </p>
+        </div>
+        <button class="home-book1 button button-main">
+          <span>Ayo Diagnosis</span>
+        </button>
+      </div>
+
+    </div>
+    <div id="features" class="home-features">
+
+    </div>
+
+    </section>
+
+    <section class="home-meet" id="tentang">
+      <div class="home-heading18">
+        <h2 class="home-text82">Tentang Kami</h2>
+        <p class="home-text83">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+          eiusmod tempor incididunt.
+        </p>
+      </div>
+      <div class="home-list1">
+        <div data-teleport="doctors" class="home-doctors">
+          <div class="doctor-doctor">
+            <img alt="image" src="{{ url_for('static', filename='public/Doctors/fotojadi.jpg') }}"
+              class="doctor-image" />
+            <div class="doctor-heading">
+              <h2 class="doctor-text"><span>Khairil Ilmi</span></h2>
+              <p class="doctor-text1">
+                <span>
+                  Machine Learning Developer and Web Developer
+                </span>
               </p>
             </div>
           </div>
-        </section>
-        <section id="kontak" class="home-book4">
-          <div class="home-heading17">
-            <h2 class="home-text70">Kontak Kami</h2>
-            <p class="home-text71">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt.
-            </p>
-          </div>
-          <div class="home-form">
-            <div class="home-inputs">
-              <input
-                type="text"
-                placeholder="Name"
-                autocomplete="name"
-                class="input book-input"
-              />
-              <input
-                type="email"
-                placeholder="Email"
-                autocomplete="email"
-                class="input book-input"
-              />
-              <input
-                type="tel"
-                placeholder="Phone"
-                autocomplete="tel"
-                class="input book-input"
-              />
-              <div class="home-date">
-                <input
-                  type="date"
-                  placeholder="Date"
-                  class="input book-input"
-                />
-                <img
-                  alt="image"
-                  src="public/Icons/calendar-2.svg"
-                  class="home-image18"
-                />
-              </div>
-              <input
-                type="text"
-                placeholder="Practice"
-                class="input book-input"
-              />
-              <div class="home-lower">
-                <p class="home-text74">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt.
-                </p>
-                <div class="home-button">
-                  <button class="home-book5 button button-main">
-                    <span>Book</span>
-                  </button>
-                  <p class="home-text76">
-                    <span>Lorem ipsum dolor sit amet, consectetur</span>
-                    <span class="home-text78">adipiscing elit</span>
-                    <span>, sed do eiusmod tempor</span>
-                    <span class="home-text80">incididunt</span>
-                    <span>.</span>
-                  </p>
-                </div>
-              </div>
+          <div class="doctor-doctor">
+            <img alt="image" src="{{ url_for('static', filename='public/Doctors/doctor-2-300w.png') }}"
+              class="doctor-image" />
+            <div class="doctor-heading">
+              <h2 class="doctor-text"><span>Ridho Ferdiansa</span></h2>
+              <p class="doctor-text1">
+                <span>
+                  Front-End Developer
+                </span>
+              </p>
             </div>
           </div>
-        </section>
-        <section class="home-meet" id="tentang">
-          <div class="home-heading18">
-            <h2 class="home-text82">Tentang Kami</h2>
-            <p class="home-text83">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt.
-            </p>
-          </div>
-          <div class="home-list1">
-            <div data-teleport="doctors" class="home-doctors">
-              <div class="doctor-doctor">
-                <img
-                  alt="image"
-                  src="{{ url_for('static', filename='public/Doctors/doctor-1-300w.png') }}"
-                  class="doctor-image"
-                />
-                <div class="doctor-heading">
-                  <h2 class="doctor-text"><span>Khairil Ilmi</span></h2>
-                  <p class="doctor-text1">
-                    <span>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt.
-                    </span>
-                  </p>
-                </div>
-              </div>
-              <div class="doctor-doctor">
-                <img
-                  alt="image"
-                  src="{{ url_for('static', filename='public/Doctors/doctor-2-300w.png') }}"
-                  class="doctor-image"
-                />
-                <div class="doctor-heading">
-                  <h2 class="doctor-text"><span>Ridho Ferdiansa</span></h2>
-                  <p class="doctor-text1">
-                    <span>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt.
-                    </span>
-                  </p>
-                </div>
-              </div>
-              <div class="doctor-doctor">
-                <img
-                  alt="image"
-                  src="{{ url_for('static', filename='public/Doctors/doctor-3-300w.png') }}"
-                  class="doctor-image"
-                />
-                <div class="doctor-heading">
-                  <h2 class="doctor-text"><span>Muhammad Firdaus</span></h2>
-                  <p class="doctor-text1">
-                    <span>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt.
-                    </span>
-                  </p>
-                </div>
-              </div>
-              <div class="doctor-doctor">
-                <img
-                  alt="image"
-                  src="{{ url_for('static', filename='public/Doctors/doctor-4-300w.png') }}"
-                  class="doctor-image"
-                />
-                <div class="doctor-heading">
-                  <h2 class="doctor-text"><span>...</span></h2>
-                  <p class="doctor-text1">
-                    <span>
-                      Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                      sed do eiusmod tempor incididunt.
-                    </span>
-                  </p>
-                </div>
-              </div>
+          <div class="doctor-doctor">
+            <img alt="image" src="{{ url_for('static', filename='public/Doctors/doctor-3-300w.png') }}"
+              class="doctor-image" />
+            <div class="doctor-heading">
+              <h2 class="doctor-text"><span>Muhammad Firdaus</span></h2>
+              <p class="doctor-text1">
+                <span>
+                  Leader Developer
+                </span>
+              </p>
             </div>
           </div>
-
-        </section>
-        <!-- Footer -->
-        <div class="home-download"><div class="home-main1"></div></div>
-        <div class="home-footer">
-          <div class="home-left1">
-            <div class="home-legal">
-              <span class="home-copyright">
-                © 2023 Khairil Ilmi Rights Reserved.
-              </span>
-              <span class="legal-link">Privacy Policy</span>
-              <span class="legal-link">Terms of Use</span>
+          <div class="doctor-doctor">
+            <img alt="image" src="{{ url_for('static', filename='public/Doctors/doctor-4-300w.png') }}"
+              class="doctor-image" />
+            <div class="doctor-heading">
+              <h2 class="doctor-text"><span>Al-Hilal Habib</span></h2>
+              <p class="doctor-text1">
+                <span>
+                  Front-End Developer
+                </span>
+              </p>
             </div>
           </div>
-          <div class="home-right1">
-            <div class="home-list3">
-              <span class="home-header16">Menu</span>
-              <div class="home-links1">
-                <span class="home-link04">Home</span>
-                <span class="home-link05">About</span>
-                <span class="home-link06">Services</span>
-                <span class="home-link07">Blog</span>
-                <span class="home-link08">Support</span>
-              </div>
-            </div>
-            <div class="home-list4">
-              <span class="home-header17">Resources</span>
-              <div class="home-links2">
-                <span class="home-link09">Test Results</span>
-                <span class="home-link10">Patients</span>
-                <span class="home-link11">Doctors</span>
-                <span class="home-link12">Health</span>
-              </div>
-            </div>
-            <div class="home-list5">
-              <span class="home-header18">Contact</span>
-              <div class="home-links3">
-                <span class="home-link13">Darussalam, Banda Aceh</span>
-                <a
-                  href="mailto:contact@template.new?subject=Main"
-                  class="home-link14"
-                >
-                  mbah@gmail.com
-                </a>
-                <a href="tel:(004) 234 - 5678" class="home-link15">
-                  (004) 234 - 5678
-                </a>
-              </div>
+          <div class="doctor-doctor">
+            <img alt="image" src="{{ url_for('static', filename='public/Doctors/doctor-4-300w.png') }}"
+              class="doctor-image" />
+            <div class="doctor-heading">
+              <h2 class="doctor-text"><span>Askar Aziz</span></h2>
+              <p class="doctor-text1">
+                <span>
+                  Front-End Developer
+                </span>
+              </p>
             </div>
           </div>
-          <div class="home-legal1">
-            <div class="home-row3">
-              <span class="legal-link">Privacy Policy</span>
-              <span class="legal-link">Terms of Use</span>
+          <div class="doctor-doctor">
+            <img alt="image" src="{{ url_for('static', filename='public/Doctors/doctor-4-300w.png') }}"
+              class="doctor-image" />
+            <div class="doctor-heading">
+              <h2 class="doctor-text"><span>Muhammad Fona</span></h2>
+              <p class="doctor-text1">
+                <span>
+                  Front-End Developer
+                </span>
+              </p>
             </div>
-            <span class="home-copyright5">
-              © 2022 finbest. All Rights Reserved.
-            </span>
           </div>
         </div>
-      </body>
+      </div>
+
+    </section>
+    <!-- Footer -->
+    <div class="home-download">
+      <div class="home-main1"></div>
+    </div>
+    <div class="home-footer">
+      <div class="home-left1">
+        <div class="home-legal">
+          <span class="home-copyright">
+            © 2023 Khairil Ilmi Rights Reserved.
+          </span>
+          <span class="legal-link">Privacy Policy</span>
+          <span class="legal-link">Terms of Use</span>
+        </div>
+      </div>
+      <div class="home-right1">
+        <div class="home-list3">
+          <span class="home-header16">Menu</span>
+          <div class="home-links1">
+            <span class="home-link04">Home</span>
+            <span class="home-link05">About</span>
+            <span class="home-link06">Services</span>
+            <span class="home-link07">Blog</span>
+            <span class="home-link08">Support</span>
+          </div>
+        </div>
+        <div class="home-list4">
+          <span class="home-header17">Resources</span>
+          <div class="home-links2">
+            <span class="home-link09">Test Results</span>
+            <span class="home-link10">Patients</span>
+            <span class="home-link11">Doctors</span>
+            <span class="home-link12">Health</span>
+          </div>
+        </div>
+        <div class="home-list5">
+          <span class="home-header18">Contact</span>
+          <div class="home-links3">
+            <span class="home-link13">Darussalam, Banda Aceh</span>
+            <a href="mailto:contact@template.new?subject=Main" class="home-link14">
+              mbah@gmail.com
+            </a>
+            <a href="tel:(004) 234 - 5678" class="home-link15">
+              (004) 234 - 5678
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="home-legal1">
+        <div class="home-row3">
+          <span class="legal-link">Privacy Policy</span>
+          <span class="legal-link">Terms of Use</span>
+        </div>
+        <span class="home-copyright5">
+          © 2022 finbest. All Rights Reserved.
+        </span>
+      </div>
+    </div>
+
+</body>
+
 </html>

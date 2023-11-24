@@ -1,295 +1,445 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prediksi Penyakit</title>
-    <link rel="stylesheet" href="https://cdn.tailwindcss.com">
-    <style>
-        /* Tambahkan gaya CSS sesuai kebutuhan Anda */
-        body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            color: #333;
-            overflow-x: hidden; /* Mengatasi scroll horizontal */
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Prediksi Penyakit</title>
+  <link rel="stylesheet" href="https://cdn.tailwindcss.com" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&amp;display=swap"
+    data-tag="font" />
+  <link rel="stylesheet"
+    href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+    data-tag="font" />
+  <style>
+    /* Tambahkan gaya CSS sesuai kebutuhan Anda */
+    body {
+      font-family: Poppins;
+      background-color: #f5f5f5;
+      overflow-x: hidden;
+      /* Mengatasi scroll horizontal */
+    }
 
-        .navbar {
-            background-color: #fff;
-            border-bottom: 1px solid #ddd;
-            padding: 1rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    #navbar {
+      background-color: #1e3a46;
+      padding: 1rem;
+      color: #fff;
+    }
 
-        .navbar a {
-            text-decoration: none;
-            color: #333;
-            padding: 0.5rem 1rem;
-            border-radius: 0.25rem;
-            transition: background-color 0.3s ease;
-        }
+    .container {
+      max-width: 800px;
+      margin: 2rem auto;
+      background-color: #fff;
+      padding: 2rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      /* Mengatasi overflow */
+    }
 
-        .navbar a:hover {
-            background-color: #ddd;
-        }
+    .question-container {
+      display: none;
+      text-align: center;
+    }
 
-        .container {
-            max-width: 800px;
-            margin: 2rem auto;
-            background-color: #fff;
-            padding: 2rem;
-            border-radius: 0.5rem;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            overflow: hidden; /* Mengatasi overflow */
-        }
+    .question-container.active {
+      display: block;
+    }
 
-        .question-container {
-            display: none;
-            text-align: center;
-        }
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+    }
 
-        .question-container.active {
-            display: block;
-        }
+    .btn {
+      background-color: #3498db;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: none;
+      border-radius: 0.25rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
 
-        .btn-container {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-        }
+    .btn:hover {
+      background-color: #2980b9;
+    }
 
-        .btn {
-            background-color: #3498db;
-            color: #fff;
-            padding: 0.5rem 1rem;
-            border: none;
-            border-radius: 0.25rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
+    @media (min-width: 768px) {
+      #navbar-default {
+        display: none;
+      }
+    }
 
-        .btn:hover {
-            background-color: #2980b9;
-        }
-    </style>
+    .radio-container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.5rem;
+      /* Sesuaikan sesuai kebutuhan */
+    }
+
+    .radio-container label {
+      flex-grow: 1;
+      text-align: center;
+    }
+  </style>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='index.css') }}" />
 </head>
+
 <body>
+  <nav class="bg-blue dark:bg-gray-900" id="navbar">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        <div class="flex items-center">
+          <a href="#" class="flex-shrink-0 flex items-center">
+            <img class="h-20 w-20" src="{{url_for('static', filename='public/dis.png')}}" alt="Mbah Penyakit Logo" />
+            <span class="ml-2 font-medium text-white-900">MbahPenyakit</span>
+          </a>
+        </div>
 
-<nav class="navbar">
-    <a href="#" class="logo">
-        <img src="{{ url_for('static', filename='public/diesease-300h.png') }}" alt="Flowbite Logo" />
-        <span class="logo-text">MbahPenyakit</span>
-    </a>
-    <div class="nav-links">
-        <a href="/">Home</a>
-        <a href="/prediksi">Prediksi</a>
-        <a href="#">Kontak</a>
-        <a href="#">Tentang</a>
+        <div class="hidden lg:block">
+          <div class="flex items-center">
+            <a href="/"
+              class="ml-4 py-2 rounded-lg px-4 font-medium text-white-700 hover:bg-gray-100 hover:text-gray-900">Kembali</a>
+            <a href="/prediksi"
+              class="ml-4 py-2 rounded-lg px-4 font-medium text-white-700 hover:bg-gray-100 hover:text-gray-900">Prediksi</a>
+          </div>
+        </div>
+
+        <div class="-mr-2 lg:hidden">
+          <button type="button"
+            class="bg-gray-800 inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:bg-gray-700 hover:text-white"
+            onclick="document.getElementById('navbar-default').classList.toggle('hidden'); document.getElementById('navbar-default').scrollIntoView({ behavior: 'smooth' });">
+            <span class="sr-only">Open main menu</span>
+            <svg class="h-6 w-6" aria-hidden="true" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+              stroke-width="2">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+            </svg>
+          </button>
+        </div>
+      </div>
     </div>
-</nav>
+    <div class="hidden lg:block" id="navbar-default">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="flex flex-col pt-4 pb-16">
+          <a href="#" class="block py-2 px-3 text-white-700 rounded-md hover:bg-gray-100">Home</a>
+          <a href="/prediksi" class="block py-2 px-3 text-white-700 rounded-md hover:bg-blue-100">Prediksi</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <script>
+    const navbar = document.getElementById("navbar-default");
 
-<div class="container">
+    navbar.classList.add("hidden");
+
+    navbar.addEventListener("click", function () {
+      navbar.classList.toggle("hidden");
+      navbar.scrollIntoView({ behavior: "smooth" });
+    });
+  </script>
+
+  <div class="container">
+    <div class="btn-reset-container">
+      <button onclick="resetForm()" id="resetBtn">🔄</button>
+    </div>
+
     <div id="questions-container">
-        <!-- Question pages will be dynamically added here -->
+      <!-- Question pages will be dynamically added here -->
+      <div id="questionCounter" class="text-gray-600 text-sm"></div>
+      <div id="pageNumber" class="text-gray-600 text-sm"></div>
     </div>
 
     <div class="btn-container">
-        <button onclick="prevQuestion()" class="btn" id="prevBtn" disabled>Kembali</button>
-        <button onclick="nextQuestion()" class="btn" id="nextBtn">Selanjutnya</button>
-        <button onclick="submitForm()" class="btn" id="submitBtn" style="display: none;">Prediksi</button>
+      <button onclick="prevQuestion()" class="btn" id="prevBtn" disabled>
+        Kembali
+      </button>
+      <button onclick="submitForm()" class="btn btn-predict" id="submitBtn" style="display: none">
+        Prediksi
+      </button>
+
+      <button onclick="nextQuestion()" class="btn" id="nextBtn">
+        Selanjutnya
+      </button>
+
     </div>
-    
-    <div id="prediction-container" style="display: none;">
-        <h3>Penyakit yang Anda alami:</h3>
-        <p id="predictionResult"></p>
+
+    <div id="prediction-container" style="display: none">
+      <p id="predictionResult"></p>
     </div>
-    <!-- {% if prediction is not none %}
+
+  </div>
+  <!-- {% if prediction is not none %}
         <p>Penyakit yang Anda alami: {{ prediction }}</p>
     {% endif %} -->
 
-    <script>
-        var questions = [
-  "Apakah Anda mengalami gatal-gatal?",
-  "Apakah Anda memiliki ruam kulit?",
-  "Apakah Anda mengalami nodal skin erupsi?",
-  "Apakah Anda bersin terus menerus?",
-  "Apakah tubuh Anda gemetaran?",
-  "Apakah tubuh Anda merasa panas dingin?",
-  "Apakah Anda mengalami nyeri sendi?",
-  "Apakah Anda merasakan sakit perut?",
-  "Apakah Anda mengalami lidah keasaman?",
-  "Apakah Anda memiliki sariawan?",
-  "Apakah Anda mengalami pengecilan otot?",
-  "Apakah Anda muntah?",
-  "Apakah Anda mengalami pembakaran saat buang air kecil?",
-  "Apakah Anda melihat bercak pada saat buang air kecil?",
-  "Apakah Anda merasa kelelahan?",
-  "Apakah Anda mengalami penambahan berat badan?",
-  "Apakah Anda merasa cemas?",
-  "Apakah tangan dan kaki Anda terasa dingin?",
-  "Apakah Anda mengalami suasana hati buruk?",
-  "Apakah Anda mengalami penurunan berat badan?",
-  "Apakah Anda merasa gelisah?",
-  "Apakah Anda merasa lesu?",
-  "Apakah Anda melihat bercak di tenggorokan?",
-  "Apakah kadar gula Anda tidak teratur?",
-  "Apakah Anda batuk?",
-  "Apakah Anda mengalami demam tinggi?",
-  "Apakah mata Anda cekung?",
-  "Apakah Anda mengalami sesak napas?",
-  "Apakah Anda berkeringat?",
-  "Apakah Anda mengalami dehidrasi?",
-  "Apakah Anda mengalami gangguan pencernaan?",
-  "Apakah Anda mengalami sakit kepala?",
-  "Apakah kulit Anda kekuningan?",
-  "Apakah urine Anda berwarna gelap?",
-  "Apakah Anda merasa mual?",
-  "Apakah Anda kehilangan nafsu makan?",
-  "Apakah Anda merasakan sakit di belakang mata?",
-  "Apakah Anda merasakan sakit punggung?",
-  "Apakah Anda mengalami sembelit?",
-  "Apakah Anda merasakan sakit perut?",
-  "Apakah Anda mengalami diare?",
-  "Apakah Anda mengalami demam ringan?",
-  "Apakah urine Anda berwarna kuning?",
-  "Apakah mata Anda menguning?",
-  "Apakah Anda mengalami gagal hati akut?",
-  "Apakah Anda mengalami kelebihan cairan?",
-  "Apakah Anda mengalami pembengkakan perut?",
-  "Apakah Anda mengalami pembengkakan kelenjar getah bening?"
-];
+
+  <script>
+    var questions = [
+      "Apakah Anda mengalami gatal-gatal?",
+      "Apakah Anda memiliki ruam kulit?",
+      "Apakah Anda mengalami nodal skin erupsi?",
+      "Apakah Anda bersin terus menerus?",
+      "Apakah tubuh Anda gemetaran?",
+      "Apakah tubuh Anda merasa panas dingin?",
+      "Apakah Anda mengalami nyeri sendi?",
+      "Apakah Anda merasakan sakit perut?",
+      "Apakah Anda mengalami lidah keasaman?",
+      "Apakah Anda memiliki sariawan?",
+      "Apakah Anda mengalami pengecilan otot?",
+      "Apakah Anda muntah?",
+      "Apakah Anda mengalami pembakaran saat buang air kecil?",
+      "Apakah Anda melihat bercak pada saat buang air kecil?",
+      "Apakah Anda merasa kelelahan?",
+      "Apakah Anda mengalami penambahan berat badan?",
+      "Apakah Anda merasa cemas?",
+      "Apakah tangan dan kaki Anda terasa dingin?",
+      "Apakah Anda mengalami suasana hati buruk?",
+      "Apakah Anda mengalami penurunan berat badan?",
+      "Apakah Anda merasa gelisah?",
+      "Apakah Anda merasa lesu?",
+      "Apakah Anda melihat bercak di tenggorokan?",
+      "Apakah kadar gula Anda tidak teratur?",
+      "Apakah Anda batuk?",
+      "Apakah Anda mengalami demam tinggi?",
+      "Apakah mata Anda cekung?",
+      "Apakah Anda mengalami sesak napas?",
+      "Apakah Anda berkeringat?",
+      "Apakah Anda mengalami dehidrasi?",
+      "Apakah Anda mengalami gangguan pencernaan?",
+      "Apakah Anda mengalami sakit kepala?",
+      "Apakah kulit Anda kekuningan?",
+      "Apakah urine Anda berwarna gelap?",
+      "Apakah Anda merasa mual?",
+      "Apakah Anda kehilangan nafsu makan?",
+      "Apakah Anda merasakan sakit di belakang mata?",
+      "Apakah Anda merasakan sakit punggung?",
+      "Apakah Anda mengalami sembelit?",
+      "Apakah Anda merasakan sakit perut?",
+      "Apakah Anda mengalami diare?",
+      "Apakah Anda mengalami demam ringan?",
+      "Apakah urine Anda berwarna kuning?",
+      "Apakah mata Anda menguning?",
+      "Apakah Anda mengalami gagal hati akut?",
+      "Apakah Anda mengalami kelebihan cairan?",
+      "Apakah Anda mengalami pembengkakan perut?",
+      "Apakah Anda mengalami pembengkakan kelenjar getah bening?",
+    ];
+
+    var currentIndex = 0; // Indeks pertanyaan saat ini
+
+    // Fungsi untuk membuat formulir berdasarkan array pertanyaan
+    function createForm() {
+      var questionsContainer = document.getElementById(
+        "questions-container"
+      );
+
+      questions.forEach(function (question, index) {
+        var questionDiv = document.createElement("div");
+        questionDiv.className = "question-container";
+
+        var questionLabel = document.createElement("h3");
+        questionLabel.textContent = question;
+
+        var radioButtonsContainer = document.createElement("div");
+        radioButtonsContainer.className = "radio-buttons-container";
+
+        var radioYes = createRadioButton(index, "1", "Ya");
+        var radioNo = createRadioButton(index, "0", "Tidak");
+
+        radioButtonsContainer.appendChild(radioYes);
+        radioButtonsContainer.appendChild(radioNo);
+
+        questionDiv.appendChild(questionLabel);
+        questionDiv.appendChild(radioButtonsContainer);
+
+        questionsContainer.appendChild(questionDiv);
+      });
+      // Menambahkan tombol reset
+      var resetButton = document.createElement("div");
+      resetButton.id = "resetBtn";
+      resetButton.style.display = "none";
+      resetButton.className = "cursor-pointer";
+      resetButton.innerHTML = "🔄"; // Ganti dengan ikon reset yang sesuai
+      resetButton.addEventListener("click", resetForm);
+
+      var btnContainer = document.querySelector(".btn-container");
+      btnContainer.appendChild(resetButton);
 
 
-        var currentIndex = 0; // Indeks pertanyaan saat ini
+      // Menambahkan elemen nomor halaman
+      var pageNumber = document.createElement("div");
+      pageNumber.id = "pageNumber";
+      pageNumber.className = "text-gray-600 text-sm";
+      questionsContainer.appendChild(pageNumber);
+      showQuestion(currentIndex);
+      showQuestion(currentIndex);
+    }
+    function createRadioButton(index, value, label) {
+      var radioContainer = document.createElement("div");
+      radioContainer.className = "flex items-center border border-gray-200 rounded dark:border-gray-700 cursor-pointer";
 
-        // Fungsi untuk membuat formulir berdasarkan array pertanyaan
-        function createForm() {
-            var questionsContainer = document.getElementById('questions-container');
+      var radio = document.createElement("input");
+      radio.type = "radio";
+      radio.name = "feature" + (index + 1);
+      radio.value = value;
+      radio.id = "radio" + index;
+      radio.className = "w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600";
 
-            questions.forEach(function (question, index) {
-                var questionDiv = document.createElement('div');
-                questionDiv.className = 'question-container';
+      var labelElement = document.createElement("label");
+      labelElement.htmlFor = "radio" + index;
+      labelElement.textContent = label;
+      labelElement.className = "py-2 text-sm font-medium text-gray-900 dark:text-gray-300";
 
-                var questionLabel = document.createElement('h3');
-                questionLabel.textContent = question;
-
-                var radioButtonsContainer = document.createElement('div');
-                radioButtonsContainer.className = 'radio-buttons-container';
-
-                var radioYes = createRadioButton(index, '1', 'Ya');
-                var radioNo = createRadioButton(index, '0', 'Tidak');
-
-                radioButtonsContainer.appendChild(radioYes);
-                radioButtonsContainer.appendChild(radioNo);
-
-                questionDiv.appendChild(questionLabel);
-                questionDiv.appendChild(radioButtonsContainer);
-
-                questionsContainer.appendChild(questionDiv);
-            });
-
-            showQuestion(currentIndex);
+      // Menambahkan event listener ke container radio untuk mengatur radio button
+      radioContainer.addEventListener("click", function (event) {
+        if (event.target.type !== "radio") {
+          radio.click(); // Menjalankan klik pada radio button hanya jika yang diklik bukan radio button itu sendiri
+          nextQuestion();
+          markClicked(index);
         }
+      });
 
-        // Fungsi untuk membuat elemen tombol radio
-        function createRadioButton(index, value, label) {
-            var radio = document.createElement('input');
-            radio.type = 'radio';
-            radio.name = 'feature' + (index + 1);
-            radio.value = value;
+      radioContainer.appendChild(radio);
+      radioContainer.appendChild(labelElement);
 
-            var labelElement = document.createElement('label');
-            labelElement.textContent = label;
-            labelElement.className = 'radio-button';
-            labelElement.onclick = function() {
-                nextQuestion();
-            };
-
-            labelElement.appendChild(radio);
-
-            return labelElement;
+      return radioContainer;
+    }
+    function markClicked(index) {
+      var radioButtons = document.querySelectorAll('input[type="radio"]');
+      radioButtons.forEach(function (radio, i) {
+        if (i === index) {
+          radio.parentNode.classList.add("peer-checked");
+        } else {
+          radio.parentNode.classList.remove("peer-checked");
         }
+      });
+    }
 
-        // Fungsi untuk menampilkan pertanyaan berdasarkan indeks saat ini
-        function showQuestion(index) {
-            var questionContainers = document.querySelectorAll('.question-container');
-            questionContainers.forEach(function (container, i) {
-                if (i === index) {
-                    container.classList.add('active');
-                } else {
-                    container.classList.remove('active');
-                }
-            });
 
-            // Mengatur keadaan tombol Kembali dan Selanjutnya
-            document.getElementById('prevBtn').disabled = index === 0;
-            document.getElementById('nextBtn').disabled = index === questions.length - 1;
-
-            // Menampilkan atau menyembunyikan tombol "Prediksi" di akhir
-            document.getElementById('submitBtn').style.display = index === questions.length - 1 ? 'block' : 'none';
+    // Fungsi untuk menampilkan pertanyaan berdasarkan indeks saat ini
+    function showQuestion(index) {
+      var questionContainers = document.querySelectorAll(".question-container");
+      questionContainers.forEach(function (container, i) {
+        if (i === index) {
+          container.classList.add("active");
+        } else {
+          container.classList.remove("active");
         }
+      });
 
-        // Fungsi untuk menampilkan pertanyaan berikutnya
-        function nextQuestion() {
-            if (currentIndex < questions.length - 1) {
-                currentIndex++;
-                showQuestion(currentIndex);
-            }
-        }
+      // Mengatur keadaan tombol Kembali dan Selanjutnya
+      document.getElementById("prevBtn").disabled = index === 0;
+      document.getElementById("nextBtn").disabled = index === questions.length - 1;
 
-        // Fungsi untuk menampilkan pertanyaan sebelumnya
-        function prevQuestion() {
-            if (currentIndex > 0) {
-                currentIndex--;
-                showQuestion(currentIndex);
-            }
-        }
+      // Menampilkan atau menyembunyikan tombol "Prediksi" di akhir
+      document.getElementById("submitBtn").style.display = index === questions.length - 1 ? "block" : "none";
 
-        
-        function submitForm() {
-    var selectedAnswers = document.querySelectorAll('input[type="radio"]:checked');
-    var predictionResult = document.getElementById('predictionResult');
+      // Perbarui elemen nomor halaman
+      var pageNumber = document.getElementById("pageNumber");
+      pageNumber.textContent = "Pertanyaan " + (index + 1) + " dari " + questions.length;
+    }
+    // Fungsi untuk menampilkan pertanyaan berikutnya
+    function nextQuestion() {
+      if (currentIndex < questions.length - 1) {
+        currentIndex++;
+        showQuestion(currentIndex);
+      }
+    }
 
-    if (selectedAnswers.length === questions.length) {
+    // Fungsi untuk menampilkan pertanyaan sebelumnya
+    function prevQuestion() {
+      if (currentIndex > 0) {
+        currentIndex--;
+        showQuestion(currentIndex);
+      }
+    }
+
+    function submitForm() {
+      var predictBtn = document.getElementById("submitBtn");
+      predictBtn.classList.add("btn-predict-clicked");
+      predictBtn.textContent = "Menunggu...";
+      predictBtn.disabled = true;
+      var selectedAnswers = document.querySelectorAll(
+        'input[type="radio"]:checked'
+      );
+      var predictionResult = document.getElementById("predictionResult");
+
+      if (selectedAnswers.length === questions.length) {
         var answers = Array.from(selectedAnswers).map(function (answer) {
-            return answer.value === '1' ? 'Ya' : 'Tidak';
+          return answer.value === "1" ? 1 : 0;
         });
 
         // Kirim data jawaban ke server Flask untuk prediksi
-        fetch('/predict', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ features: answers }),  // Mengubah kunci dari 'answers' menjadi 'features'
+        fetch("/predict", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ features: answers }), // Tetap gunakan 'features' sebagai kunci
         })
-            .then(response => response.json())
-            .then(data => {
-                if (data.error) {
-                    console.error('Error:', data.error);
-                } else {
-                    // Tampilkan hasil prediksi
-                    predictionResult.textContent = "Penyakit yang Anda alami: " + data.prediction;
-                    document.getElementById('prediction-container').style.display = 'block';
-                    document.getElementById('submitBtn').style.display = 'none';
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
-    } else {
-        alert('Silakan jawab semua pertanyaan sebelum melihat jawaban.');
+          .then((response) => {
+            if (!response.ok) {
+              throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+            return response.json();
+          })
+          .then((data) => {
+            // Tampilkan hasil prediksi
+            predictionResult.textContent =
+              "Penyakit yang Anda alami: " + data.prediction;
+            document.getElementById("prediction-container").style.display =
+              "block";
+            document.getElementById("submitBtn").style.display = "none";
+            document.getElementById("nextBtn").style.display = "block";
+            document.getElementById("resetBtn").style.display = "block";
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      } else {
+        alert("Silakan jawab semua pertanyaan sebelum melihat jawaban.");
+      }
     }
-}
+    function resetForm() {
+      var radioButtons = document.querySelectorAll('input[type="radio"]');
+      radioButtons.forEach(function (radio) {
+        radio.checked = false;
+      });
+
+      currentIndex = 0;
+      showQuestion(currentIndex);
+
+      // Reset tampilan tombol prediksi
+      var predictBtn = document.getElementById("submitBtn");
+      predictBtn.classList.remove("btn-predict-clicked");
+      predictBtn.textContent = "Prediksi";
+      predictBtn.disabled = false;
+
+      // Aktifkan kembali tombol selanjutnya
+      var nextBtn = document.getElementById("nextBtn");
+      nextBtn.disabled = false;
+
+      // Sembunyikan hasil prediksi dan tombol reset
+      var predictionContainer = document.getElementById("prediction-container");
+      predictionContainer.style.display = "none";
+
+      var resetButton = document.getElementById("resetBtn");
+      resetButton.style.display = "none";
+    }
 
 
-        // Panggil fungsi untuk membuat formulir saat halaman dimuat
-        window.onload = function () {
-            createForm();
-        };
-    </script>
-</div>
+    // Panggil fungsi untuk membuat formulir saat halaman dimuat
+    window.onload = function () {
+      createForm();
+    };
+  </script>
+  </div>
 </body>
+
 </html>
