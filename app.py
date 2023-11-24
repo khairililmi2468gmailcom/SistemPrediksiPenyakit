@@ -57,25 +57,32 @@ def home():
     # Set `prediction` ke `None` saat halaman diperbarui
     prediction = None
     return render_template('index2.html', prediction=prediction)
+@app.route('/prediksi')
+def prediksi():
+    # Set `prediction` ke `None` saat halaman diperbarui
+    prediction = None
+    return render_template('prediksi.html', prediction=prediction)
 
 @app.route('/predict', methods=['POST'])
 def predict():
     try:
         # Dapatkan data yang diinputkan oleh pengguna
         features = []
-        for i in range(1, 49):
-            feature_name = f'feature{i}'
-            feature_value = float(request.form[feature_name])
-            features.append(feature_value)
+        features = request.get_json().get('features', [])
+        print("Received features:", features)
+        # for i in range(1, 49):
+        #     feature_name = f'feature{i}'
+        #     feature_value = float(request.json[feature_name])
+        #     features.append(feature_value)
 
         # Lakukan prediksi dengan model Anda
         prediction = loaded_model.predict([features])[0]
         predicted_penyakit = penyakit_mapping[prediction]
 
-        return render_template('index2.html', prediction=predicted_penyakit)
+        return jsonify({'prediction': predicted_penyakit, 'error': None})
     except Exception as e:
-        return f"An error occurred: {str(e)}"
+        return jsonify({'prediction': None, 'error': str(e)})
 
 if __name__ == '__main__':
-    app.run()
+    app.run(debug=True)
 
