@@ -1,0 +1,21 @@
+{
+    "builds": [
+        {
+            "src": "./app.py",
+            "use": "@vercel/python",
+            "config": {
+                "maxLambdaSize": "250mb"
+            }
+        }
+    ],
+    "routes": [
+        {
+            "src": "/mbahPenyakitWeb/(.*)",
+            "dest": "/mbahPenyakitWeb/$1"
+        },
+        {
+            "src": "/(.*)",
+            "dest": "/app.py"
+        }
+    ]
+}
