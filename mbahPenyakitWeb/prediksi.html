@@ -364,8 +364,6 @@
     function submitForm() {
       var predictBtn = document.getElementById("submitBtn");
       predictBtn.classList.add("btn-predict-clicked");
-      predictBtn.textContent = "Menunggu...";
-      predictBtn.disabled = true;
       var selectedAnswers = document.querySelectorAll(
         'input[type="radio"]:checked'
       );
