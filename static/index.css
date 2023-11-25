@@ -66,10 +66,10 @@
   flex-direction: column;
 }
 
-.doctor-image {
+/* .doctor-image {
   width: 270px;
   object-fit: cover;
-}
+} */
 
 .doctor-heading {
   gap: var(--dl-space-space-unit);
@@ -96,9 +96,9 @@
 }
 
 @media(max-width: 767px) {
-  .doctor-image {
+  /* .doctor-image {
     width: 200px;
-  }
+  } */
 
   .doctor-text {
     font-size: 16px;
@@ -721,11 +721,11 @@
 
 .home-features {
   width: 100%;
-  display: flex;
-  z-index: 100;
-  align-items: center;
+  height: 3rem;
+  z-index: 20;
+  overflow: hidden;
+  font-family: 'Open Sans', sans-serif;
   padding-top: var(--dl-space-space-fiveunits);
-  flex-direction: row;
   padding-bottom: var(--dl-space-space-fiveunits);
   justify-content: center;
   background-color: #25c4af;
@@ -953,7 +953,7 @@
   gap: 120px;
   width: 100%;
   display: flex;
-  max-width: 1440px;
+  max-width: 1000px;
   align-items: center;
   padding-top: 120px;
   padding-left: var(--dl-space-space-fiveunits);
@@ -1797,14 +1797,14 @@
   line-height: 27px;
 }
 
-.home-list1 {
+/* . {
   gap: var(--dl-space-space-fourunits);
   width: 100%;
   display: flex;
   max-width: 1440px;
   align-items: center;
-  flex-direction: row;
-}
+  flex-direhome-list1ction: row;
+} */
 
 .home-controls {
   gap: var(--dl-space-space-halfunit);
@@ -1817,13 +1817,13 @@
   transform: rotate(180deg);
 }
 
-.home-doctors {
+/* .home-doctors {
   gap: var(--dl-space-space-threeunits);
   width: 100%;
   display: flex;
   align-items: center;
   flex-direction: row;
-}
+} */
 
 .home-search1 {
   gap: var(--dl-space-space-oneandhalfunits);
@@ -2618,10 +2618,10 @@
     padding-right: var(--dl-space-space-fiveunits);
   }
 
-  .home-list1 {
+  /* .home-list1 {
     position: relative;
     flex-direction: column-reverse;
-  }
+  } */
 
   .home-controls {
     gap: var(--dl-space-space-unit);
@@ -2629,9 +2629,9 @@
     flex-direction: row;
   }
 
-  .home-doctors {
+  /* .home-doctors {
     overflow: hidden;
-  }
+  } */
 
   .home-search1 {
     gap: var(--dl-space-space-twounits);
@@ -3008,17 +3008,17 @@
     max-width: 80%;
   }
 
-  .home-list1 {
+  /* .home-list1 {
     gap: var(--dl-space-space-twounits);
-  }
+  } */
 
   .home-controls {
     padding-right: 0px;
   }
 
-  .home-doctors {
+  /* .home-doctors {
     gap: var(--dl-space-space-oneandhalfunits);
-  }
+  } */
 
   .home-search1 {
     padding-right: 0px;
