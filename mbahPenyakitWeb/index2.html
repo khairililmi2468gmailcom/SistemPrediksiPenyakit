@@ -320,7 +320,54 @@
     }
 
 
-    /* O */
+    @media (max-width: 767px) {
+      .video1 {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 200vw;
+        /* Use viewport width for a responsive height */
+        width: 100vw;
+        /* Use viewport width for a responsive width */
+        object-fit: cover;
+        opacity: 0.90;
+        z-index: -4;
+      }
+    }
+
+
+    @media (min-width: 768px) and (max-width: 991px) {
+      .video1 {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 200vh;
+        /* Use viewport height for a responsive height */
+        width: 100vw;
+        /* Use viewport width for a responsive width */
+        object-fit: cover;
+        opacity: 0.90;
+        z-index: -4;
+      }
+    }
+
+    @media (min-width: 768px) and (max-width: 991px) {
+      .video1 {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        height: 200vh;
+        /* Use viewport height for a responsive height */
+        width: 100vw;
+        /* Use viewport width for a responsive width */
+        object-fit: cover;
+        opacity: 0.90;
+        z-index: -4;
+      }
+    }
   </style>
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://unpkg.com/tailwindcss@^2.0.0/dist/tailwind.min.js"></script>
@@ -401,9 +448,12 @@
             Dapatkan hasil diagnosis yang akurat dan cepat dengan bantuan teknologi machine learning.
           </p>
         </div>
-        <button class="home-book1 button button-main">
-          <span>Ayo Diagnosis</span>
-        </button>
+        <a href="">
+          <button class="home-book1 button button-main">
+            <span>Ayo Diagnosis</span>
+          </button>
+        </a>
+
       </div>
 
     </div>
@@ -417,8 +467,7 @@
       <div class="home-heading18">
         <h2 class="home-text82">Tentang Kami</h2>
         <p class="home-text83">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt.
+          Kami adalah sebuah platform yang membantu Anda untuk mendiagnosis penyakit secara Real Time.
         </p>
       </div>
       <div class="home-list1">
@@ -436,8 +485,7 @@
             </div>
           </div>
           <div class="doctor-doctor">
-            <img alt="image" src="{{ url_for('static', filename='public/Doctors/doctor-2-300w.png') }}"
-              class="doctor-image" />
+            <img alt="image" src="{{ url_for('static', filename='public/Doctors/ridho.jpeg') }}" class="doctor-image" />
             <div class="doctor-heading">
               <h2 class="doctor-text"><span>Ridho Ferdiansa</span></h2>
               <p class="doctor-text1">
